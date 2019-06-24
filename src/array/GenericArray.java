@@ -1,7 +1,9 @@
 package array;
 
 /**
-* 支持动态扩容的数组
+ * 支持动态扩容的数组
+ * @author tangjun
+ * @date 2019/6/24 10:00
  */
 public class GenericArray<T>{
     /**
