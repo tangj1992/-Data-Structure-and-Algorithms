@@ -34,6 +34,9 @@ public class Main{
 
     }
 
+    /**
+     * 有序数组合并
+     */
     private static void mergeSort(){
         int[] arr1 = new int[]{1,2,3};
         int[] arr2 = new int[]{3,4,5};
