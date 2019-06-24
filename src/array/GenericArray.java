@@ -1,7 +1,5 @@
 package array;
 
-import java.util.ArrayList;
-
 /**
 * 支持动态扩容的数组
  */
