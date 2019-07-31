@@ -1,5 +1,5 @@
 #include <iostream>
-#include "singlelist.h"
+#include "SingleList.h"
 
 using namespace std;
 /**
@@ -154,4 +154,34 @@ void SingleList::destroy() {
 Node::Node(int v) {
     value = v;
     next = nullptr;
+}
+
+/**
+ * 复制构造函数测试
+ * @param list
+ */
+void a(SingleList list){
+    list.display();
+}
+/**
+ * 单链表测试
+ */
+void testSingleList(){
+    SingleList list;
+    for (int i = 0; i < 30; ++i) {
+        Node* node = new Node(i);
+        list.insert(node);
+    }
+    list.display();
+
+//    list.destroy();
+//    list.display();
+
+    SingleList list2;
+    list2 = list;
+
+    a(list2);
+
+    list2.display();
+
 }

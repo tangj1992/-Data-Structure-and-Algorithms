@@ -1,7 +1,15 @@
 #ifndef SINGLELIST_SINGLELIST_H
 #define SINGLELIST_SINGLELIST_H
 
-class Node;
+/**
+ * 链表结点
+ */
+class Node{
+public:
+    Node* next;
+    int value;
+    explicit Node(int v);
+};
 /**
  * 单链表
  */
@@ -20,14 +28,10 @@ public:
 private:
     Node* head;
 };
+
 /**
- * 链表结点
+ * 单链表测试
  */
-class Node{
-public:
-    Node* next;
-    int value;
-    Node(int v);
-};
+void testSingleList();
 
 #endif //SINGLELIST_SINGLELIST_H
