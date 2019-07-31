@@ -7,7 +7,7 @@ using namespace std;
  */
 
 SingleList::SingleList() {
-    head = NULL;
+    head = nullptr;
 }
 /**
  * 复制构造
@@ -19,20 +19,19 @@ SingleList::SingleList(const SingleList& source){
         /**
          * 对象已经生成，所以需要清空
          */
-        this->head = NULL;
-        while (p != NULL){
+        this->head = nullptr;
+        while (p != nullptr){
             this->insert(new Node(p->value));
             p = p->next;
         }
     }
 
 }
+/**
+ * 销毁链表
+ */
 SingleList::~SingleList() {
-
-    if (NULL != head){
-        delete head;
-        head = NULL;
-    }
+    this->destroy();
 }
 /**
  * 赋值运算，实现深拷贝
@@ -45,8 +44,8 @@ SingleList& SingleList::operator= (const SingleList& source){
         /**
          * 此步骤非必须，因为在这之前会首先执行对应构造函数
          */
-        this->head = NULL;
-        while (p != NULL){
+        this->head = nullptr;
+        while (p != nullptr){
             this->insert(new Node(p->value));
             p = p->next;
         }
@@ -59,11 +58,11 @@ SingleList& SingleList::operator= (const SingleList& source){
  * @return
  */
 Node* SingleList::insert(Node* node) {
-    if (head == NULL){
+    if (head == nullptr){
         head = node;
     }else{
         Node* p = head;
-        while(p->next != NULL) {
+        while(p->next != nullptr) {
             p = p->next;
         }
         p->next = node;
@@ -83,14 +82,14 @@ Node* SingleList::insert(Node* node, unsigned int targetIndex) {
         head = node;
         return head;
     }
-    if (head == NULL){
+    if (head == nullptr){
         head = node;
         return head;
     }
     unsigned int index = 0;
     Node* p = head;
-    Node* prev = NULL;
-    while ( (p != NULL) && (index != targetIndex) ){
+    Node* prev = nullptr;
+    while ( (p != nullptr) && (index != targetIndex) ){
         prev = p;
         p = p->next;
         ++index;
@@ -106,13 +105,10 @@ Node* SingleList::insert(Node* node, unsigned int targetIndex) {
  * 链表翻转
  */
 void SingleList::reverse(){
-    if (head == NULL){
-        return;
-    }
-    Node* prev = NULL;
+    Node* prev = nullptr;
     Node* p = head;
 
-    while (p != NULL){
+    while (p != nullptr){
         //先将当前元素的下一个元素保存下来
         Node* next = p->next;
         //将当前元素的下一个元素设为前一个元素
@@ -127,7 +123,7 @@ void SingleList::reverse(){
 }
 
 void SingleList::display() {
-    if (head == NULL){
+    if (head == nullptr){
         cout << "list is empty" << endl;
         return;
     }
@@ -136,16 +132,26 @@ void SingleList::display() {
     do{
         cout << p->value;
         p = p->next;
-        if (p != NULL){
+        if (p != nullptr){
             cout << ", ";
         }
-    }while (p != NULL);
+    }while (p != nullptr);
 
     cout << "]" << endl;
 }
-
+/**
+ * 销毁链表
+ */
+void SingleList::destroy() {
+    Node* p = nullptr;
+    while (nullptr != head){
+        p = head->next;
+        delete head;
+        head = p;
+    }
+}
 
 Node::Node(int v) {
     value = v;
-    next = NULL;
+    next = nullptr;
 }

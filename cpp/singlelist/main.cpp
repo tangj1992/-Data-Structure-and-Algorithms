@@ -11,14 +11,16 @@ int main() {
         list.insert(node);
     }
 
+
     list.display();
-
-    SingleList list2;
-    list2 = list;
-
-    a(list2);
-
-    list2.display();
+    list.destroy();
+    list.display();
+//    SingleList list2;
+//    list2 = list;
+//
+//    a(list2);
+//
+//    list2.display();
 
     return 0;
 }

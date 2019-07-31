@@ -15,6 +15,7 @@ public:
     SingleList& operator= (const SingleList& source);
     void reverse();
     void display();
+    void destroy();
 
 private:
     Node* head;
