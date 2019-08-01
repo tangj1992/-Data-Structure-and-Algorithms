@@ -1,14 +1,20 @@
 #include "SingleList.h"
 #include "ArrayStack.h"
 #include "Sort.h"
-#include <iostream>
+#include "BinarySearch.h"
 
 int main() {
-//    testSingleList();
+    //单链表
+    //testSingleList();
 
+    //顺序栈
     //testArrayStack();
 
-    testSort();
+    //排序算法
+    //testSort();
+
+    //二分查找
+    testBinarySearch();
 
     return 0;
 }
