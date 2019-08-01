@@ -131,8 +131,11 @@ int Sort::topk(int arr[], int size, unsigned int k){
     if (k > size){
         return -1;
     }
-    int p = 0, start = 0, end = size - 1;
-    int tempArr[size];
+    int p = 0,
+        start = 0,
+        end = size - 1,
+        tempArr[size];
+
     memset(tempArr, 0,   size * sizeof(int));
     memcpy(tempArr, arr, size * sizeof(int));
 
@@ -193,7 +196,45 @@ int Sort::partition(int arr[], int start, int end){
 
     return i;
 }
+/**
+ * 计数排序（O(n)），只适用于范围较小且是整数的数据
+ * @param arr
+ * @param size
+ */
+void Sort::countingSort(int arr[], int size){
+    if (size <= 0){
+        return;
+    }
+    //1.找出最大值
+    int max = arr[0];
+    for (int i = 1; i < size; ++i) {
+        if (max < arr[i]){
+            max = arr[i];
+        }
+    }
+    //2.统计每个数据的个数
+    int c[max + 1];
+    memset(c,0,(max+1)* sizeof(int));
+    for (int j = 0; j < size; ++j) {
+        ++c[arr[j]];
+    }
 
+    //3.依次累加，就算小于等于对应值的个数
+    for (int k = 1; k <= max; ++k) {
+        c[k] = c[k - 1] + c[k];
+    }
+
+    //4.排序
+    int temp[size];
+    int index = 0;
+    for (int l = size - 1; l >= 0; --l) {
+        index = c[arr[l]] - 1;
+        temp[index] = arr[l];
+        --c[arr[l]];
+    }
+    //5.将结果拷贝给arr
+    memcpy(arr,temp,size * sizeof(int));
+}
 
 void display(int arr[], unsigned size){
     cout << "array: [";
@@ -211,7 +252,7 @@ void testSort(){
     int arr[size];
 
     for (int i = 0; i < size; ++i) {
-        arr[i] = i;
+        arr[i] = 10-i;
     }
 
     auto  start = system_clock::now();
@@ -221,10 +262,8 @@ void testSort(){
 //    Sort::selectionSort(arr, size);//0.257014
 //    Sort::mergeSort(arr, size);
 //    Sort::quickSort(arr, size);
-
-    display(arr, size);
-    cout << Sort::topk(arr, size, 4) << endl;
-    display(arr, size);
+//    cout << Sort::topk(arr, size, 3) << endl;
+    Sort::countingSort(arr,size);
 
     auto end = system_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
