@@ -10,6 +10,7 @@ public:
     static void selectionSort(int arr[], int size);
     static void mergeSort(int arr[], int size);
     static void quickSort(int arr[], int size);
+    static int topk(int arr[], int size, unsigned int k);
 
 private:
     static void merge(int arr[], int start, int p, int end);

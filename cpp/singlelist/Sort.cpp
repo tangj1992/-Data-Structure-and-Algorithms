@@ -2,6 +2,7 @@
 #include <iostream>
 #include <random>
 #include <chrono>
+#include <memory.h>
 
 using namespace std;
 using namespace chrono;
@@ -120,6 +121,50 @@ void Sort::merge(int arr[], int start, int p, int end){
 void Sort::quickSort(int arr[], int size){
     quickSort(arr, 0,size - 1);
 }
+/**
+ * 返回数组第k大元素
+ * @param arr
+ * @param size
+ * @param k
+ */
+int Sort::topk(int arr[], int size, unsigned int k){
+    if (k > size){
+        return -1;
+    }
+    int p = 0, start = 0, end = size - 1;
+    int tempArr[size];
+    memset(tempArr, 0,   size * sizeof(int));
+    memcpy(tempArr, arr, size * sizeof(int));
+
+    do{
+        p = start;
+        int pivot = tempArr[end];
+        int tmp = 0;
+        for (int j = start; j < end; ++j) {
+            if (tempArr[j] >= pivot){
+                tmp = tempArr[j];
+                tempArr[j] = tempArr[p];
+                tempArr[p] = tmp;
+                p++;
+            }
+        }
+        tmp = tempArr[p];
+        tempArr[p] = tempArr[end];
+        tempArr[end] = tmp;
+
+        if(p + 1 < k){
+            start = p + 1;
+            end   = end;
+        } else if(p + 1 > k){
+            start = start;
+            end   = p - 1;
+        }
+
+    }while (p + 1 != k);
+
+    return tempArr[p];
+}
+
 void Sort::quickSort(int arr[], int start, int end){
     if(start >= end){
         return;
@@ -162,11 +207,11 @@ void display(int arr[], unsigned size){
 }
 void testSort(){
     default_random_engine e;
-    int size = 10000;
+    int size = 10;
     int arr[size];
 
     for (int i = 0; i < size; ++i) {
-        arr[i] = e();
+        arr[i] = i;
     }
 
     auto  start = system_clock::now();
@@ -175,10 +220,15 @@ void testSort(){
 //    Sort::insertionSort(arr, size);//0.074004
 //    Sort::selectionSort(arr, size);//0.257014
 //    Sort::mergeSort(arr, size);
-    Sort::quickSort(arr, size);
+//    Sort::quickSort(arr, size);
+
+    display(arr, size);
+    cout << Sort::topk(arr, size, 4) << endl;
+    display(arr, size);
+
     auto end = system_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
     cout << double(duration.count()) * microseconds::period::num / microseconds::period::den  << endl;
 
-//    display(arr, size);
+
 }
