@@ -116,8 +116,8 @@ void testBinarySearch(){
     }
     cout << endl;
 
-    cout << BinarySearch::firstEqual(arr, size, 3) << endl;
-    cout << BinarySearch::lastEqual(arr, size, 3) << endl;
-    cout << BinarySearch::firstEqualOrGreater(arr, size, 4) << endl;
-    cout << BinarySearch::lastEqualOrSmaller(arr, size, 4) << endl;
+    cout << "first equal:" << BinarySearch::firstEqual(arr, size, 3) << endl;
+    cout << "last equal:" << BinarySearch::lastEqual(arr, size, 3) << endl;
+    cout << "first equal or greater:" << BinarySearch::firstEqualOrGreater(arr, size, 4) << endl;
+    cout << "last equal or smaller:" << BinarySearch::lastEqualOrSmaller(arr, size, 4) << endl;
 }
