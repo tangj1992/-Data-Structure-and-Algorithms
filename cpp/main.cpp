@@ -2,6 +2,7 @@
 #include "ArrayStack.h"
 #include "Sort.h"
 #include "BinarySearch.h"
+#include "SkipList.h"
 
 int main() {
     //单链表
@@ -14,7 +15,10 @@ int main() {
     //testSort();
 
     //二分查找
-    testBinarySearch();
+   // testBinarySearch();
+
+    //跳表
+    testSkipList();
 
     return 0;
 }
