@@ -3,6 +3,7 @@
 #include "Sort.h"
 #include "BinarySearch.h"
 #include "SkipList.h"
+#include "BinaryTree.h"
 
 int main() {
     //单链表
@@ -18,7 +19,10 @@ int main() {
    // testBinarySearch();
 
     //跳表
-    testSkipList();
+    //testSkipList();
+
+    //二叉树
+    testBinaryTree();
 
     return 0;
 }
